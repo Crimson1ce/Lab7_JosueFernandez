@@ -5,6 +5,7 @@
  */
 package lab7;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -19,6 +20,19 @@ public class Carwash extends javax.swing.JFrame {
      */
     public Carwash() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        ac.cargarClientes();
+        ae.cargarEmpleados();
+        empleados1 = new DefaultComboBoxModel(ae.getEmpleados().toArray());
+        empleados2 = new DefaultComboBoxModel(ae.getEmpleados().toArray());
+        empleados3 = new DefaultComboBoxModel(ae.getEmpleados().toArray());
+        cb_estacion1.setModel(empleados1);
+        cb_estacion2.setModel(empleados2);
+        cb_estacion3.setModel(empleados3);
+        cb_estacion1.setSelectedIndex(-1);
+        cb_estacion2.setSelectedIndex(-1);
+        cb_estacion3.setSelectedIndex(-1);
+
     }
 
     /**
@@ -42,16 +56,54 @@ public class Carwash extends javax.swing.JFrame {
         sp_edad = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        bt_agregarCarro = new javax.swing.JButton();
+        bt_agregarCarroCliente = new javax.swing.JButton();
         bt_registrarCliente = new javax.swing.JButton();
         bt_registrarEmpleado = new javax.swing.JButton();
-        bt_agregarCarro1 = new javax.swing.JButton();
+        bt_agregarCarroEmpleado = new javax.swing.JButton();
         jd_carroCliente = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        ff_numPlaca = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
+        cb_tamano = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        sp_puertas = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
+        sl_suciedad = new javax.swing.JSlider();
+        jLabel10 = new javax.swing.JLabel();
+        bt_nuevoCarro = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jd_todos = new javax.swing.JDialog();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        bt_asignarCarro = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        cb_empleadosAsignar = new javax.swing.JComboBox<>();
+        cb_carrosPorLavar = new javax.swing.JComboBox<>();
+        cb_carrosAsignados = new javax.swing.JComboBox<>();
+        cb_carrosLavados = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb_1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tb_2 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tb_3 = new javax.swing.JTable();
+        cb_estacion1 = new javax.swing.JComboBox<>();
+        cb_estacion2 = new javax.swing.JComboBox<>();
+        cb_estacion3 = new javax.swing.JComboBox<>();
+        bt_lavar = new javax.swing.JButton();
+        pb1 = new javax.swing.JProgressBar();
+        pb2 = new javax.swing.JProgressBar();
+        pb3 = new javax.swing.JProgressBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         jm_registro = new javax.swing.JMenu();
         jmi_registrarEmpleado = new javax.swing.JMenuItem();
         jmi_registrarCliente = new javax.swing.JMenuItem();
+        jmi_asignarCarro = new javax.swing.JMenuItem();
+
+        jd_nuevaPersona.setTitle("Registro");
+        jd_nuevaPersona.setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 0));
 
@@ -80,10 +132,15 @@ public class Carwash extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Registro");
 
-        bt_agregarCarro.setBackground(new java.awt.Color(255, 0, 51));
-        bt_agregarCarro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        bt_agregarCarro.setForeground(new java.awt.Color(255, 255, 255));
-        bt_agregarCarro.setText("Agregar Carro");
+        bt_agregarCarroCliente.setBackground(new java.awt.Color(255, 0, 51));
+        bt_agregarCarroCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        bt_agregarCarroCliente.setForeground(new java.awt.Color(255, 255, 255));
+        bt_agregarCarroCliente.setText("Agregar Carro");
+        bt_agregarCarroCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_agregarCarroClienteActionPerformed(evt);
+            }
+        });
 
         bt_registrarCliente.setBackground(new java.awt.Color(0, 0, 255));
         bt_registrarCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -99,11 +156,21 @@ public class Carwash extends javax.swing.JFrame {
         bt_registrarEmpleado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         bt_registrarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         bt_registrarEmpleado.setText("Registrar Empleado");
+        bt_registrarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_registrarEmpleadoActionPerformed(evt);
+            }
+        });
 
-        bt_agregarCarro1.setBackground(new java.awt.Color(255, 0, 51));
-        bt_agregarCarro1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        bt_agregarCarro1.setForeground(new java.awt.Color(255, 255, 255));
-        bt_agregarCarro1.setText("Agregar Carro");
+        bt_agregarCarroEmpleado.setBackground(new java.awt.Color(255, 0, 51));
+        bt_agregarCarroEmpleado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        bt_agregarCarroEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        bt_agregarCarroEmpleado.setText("Agregar Carro");
+        bt_agregarCarroEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_agregarCarroEmpleadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -111,34 +178,34 @@ public class Carwash extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tf_apellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(sp_edad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                                .addComponent(tf_nombre))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bt_agregarCarro)
-                                    .addComponent(bt_agregarCarro1)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel5)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(bt_registrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_registrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bt_registrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel4))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(tf_apellido, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sp_edad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                    .addComponent(tf_nombre))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(bt_agregarCarroCliente)
+                                        .addComponent(bt_agregarCarroEmpleado)))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(44, 44, 44)
+                                    .addComponent(jLabel5)))
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(bt_registrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(184, 184, 184)))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,14 +229,14 @@ public class Carwash extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(bt_agregarCarro)
+                        .addComponent(bt_agregarCarroCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_agregarCarro1)))
+                        .addComponent(bt_agregarCarroEmpleado)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_registrarCliente)
-                    .addComponent(bt_registrarEmpleado))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(bt_registrarCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bt_registrarEmpleado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jd_nuevaPersonaLayout = new javax.swing.GroupLayout(jd_nuevaPersona.getContentPane());
@@ -177,38 +244,353 @@ public class Carwash extends javax.swing.JFrame {
         jd_nuevaPersonaLayout.setHorizontalGroup(
             jd_nuevaPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_nuevaPersonaLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         jd_nuevaPersonaLayout.setVerticalGroup(
             jd_nuevaPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jd_carroCliente.setTitle("Agregar Carro");
+        jd_carroCliente.setResizable(false);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Numero Placa:");
+
+        ff_numPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setText("Tamaño:");
+
+        cb_tamano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeno", "Mediano", "Grande" }));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setText("Cantidad de puertas:");
+
+        sp_puertas.setModel(new javax.swing.SpinnerNumberModel(2, 1, 10, 1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("Nivel de suciedad:");
+
+        sl_suciedad.setMaximum(10);
+        sl_suciedad.setMinimum(5);
+        sl_suciedad.setValue(5);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel10.setText("5        6        7        8       9       10");
+
+        bt_nuevoCarro.setBackground(new java.awt.Color(255, 51, 51));
+        bt_nuevoCarro.setText("Agregar Carro");
+        bt_nuevoCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_nuevoCarroActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Nuevo Carro");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(ff_numPlaca)
+                        .addComponent(cb_tamano, 0, 130, Short.MAX_VALUE)
+                        .addComponent(sp_puertas))
+                    .addComponent(sl_suciedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(bt_nuevoCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(127, 127, 127))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(ff_numPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cb_tamano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(sp_puertas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(sl_suciedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(bt_nuevoCarro)
+                .addGap(35, 35, 35))
+        );
+
         javax.swing.GroupLayout jd_carroClienteLayout = new javax.swing.GroupLayout(jd_carroCliente.getContentPane());
         jd_carroCliente.getContentPane().setLayout(jd_carroClienteLayout);
         jd_carroClienteLayout.setHorizontalGroup(
             jd_carroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jd_carroClienteLayout.setVerticalGroup(
             jd_carroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jd_todos.setTitle("Carros");
+        jd_todos.setResizable(false);
+
+        jLabel12.setText("Por lavar:");
+
+        jLabel13.setText("Lavados");
+
+        bt_asignarCarro.setBackground(new java.awt.Color(255, 153, 0));
+        bt_asignarCarro.setText("Asignar Carro");
+        bt_asignarCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_asignarCarroActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Asignados:");
+
+        cb_empleadosAsignar.setEnabled(false);
+
+        cb_carrosPorLavar.setModel(carrosPorLavar);
+
+        cb_carrosAsignados.setModel(carrosPorLavar);
+        cb_carrosAsignados.setEnabled(false);
+
+        cb_carrosLavados.setModel(carrosPorLavar);
+        cb_carrosLavados.setEnabled(false);
+
+        javax.swing.GroupLayout jd_todosLayout = new javax.swing.GroupLayout(jd_todos.getContentPane());
+        jd_todos.getContentPane().setLayout(jd_todosLayout);
+        jd_todosLayout.setHorizontalGroup(
+            jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_todosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cb_carrosPorLavar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bt_asignarCarro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(cb_empleadosAsignar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_carrosAsignados, 0, 130, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_carrosLavados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jd_todosLayout.setVerticalGroup(
+            jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_todosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addGap(31, 31, 31)
+                .addGroup(jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_carrosPorLavar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_carrosAsignados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_carrosLavados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(jd_todosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_asignarCarro)
+                    .addComponent(cb_empleadosAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Try-Carwash");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
+        tb_1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Placa", "Tamaño", "Nivel de Suciedad", "Tiempo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tb_1);
+
+        tb_2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Placa", "Tamaño", "Nivel de Suciedad", "Tiempo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tb_2);
+
+        tb_3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Placa", "Tamaño", "Nivel de Suciedad", "Tiempo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tb_3);
+
+        cb_estacion1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_estacion1ItemStateChanged(evt);
+            }
+        });
+
+        cb_estacion2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_estacion2ItemStateChanged(evt);
+            }
+        });
+
+        cb_estacion3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_estacion3ItemStateChanged(evt);
+            }
+        });
+
+        bt_lavar.setText("Lavar");
+        bt_lavar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_lavarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(pb3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_estacion3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(pb2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_estacion2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(pb1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cb_estacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(332, 332, 332)
+                        .addComponent(bt_lavar)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cb_estacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cb_estacion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pb2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cb_estacion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pb3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(bt_lavar)
+                .addContainerGap())
         );
 
         jm_registro.setText("Registro");
@@ -229,6 +611,14 @@ public class Carwash extends javax.swing.JFrame {
         });
         jm_registro.add(jmi_registrarCliente);
 
+        jmi_asignarCarro.setText("Asignar Carro");
+        jmi_asignarCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_asignarCarroActionPerformed(evt);
+            }
+        });
+        jm_registro.add(jmi_asignarCarro);
+
         jMenuBar1.add(jm_registro);
 
         setJMenuBar(jMenuBar1);
@@ -248,26 +638,28 @@ public class Carwash extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmi_registrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_registrarEmpleadoActionPerformed
+        jd_nuevaPersona.pack();
+
         bt_registrarEmpleado.setVisible(true);
-        bt_agregarCarro1.setVisible(true);
+        bt_agregarCarroEmpleado.setVisible(true);
 
         bt_registrarCliente.setVisible(false);
-        bt_agregarCarro.setVisible(false);
+        bt_agregarCarroCliente.setVisible(false);
 
-        jd_nuevaPersona.pack();
         jd_nuevaPersona.setModal(true);
         jd_nuevaPersona.setLocationRelativeTo(this);
         jd_nuevaPersona.setVisible(true);
     }//GEN-LAST:event_jmi_registrarEmpleadoActionPerformed
 
     private void jmi_registrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_registrarClienteActionPerformed
+        jd_nuevaPersona.pack();
+
         bt_registrarEmpleado.setVisible(false);
-        bt_agregarCarro1.setVisible(false);
+        bt_agregarCarroEmpleado.setVisible(false);
 
         bt_registrarCliente.setVisible(true);
-        bt_agregarCarro.setVisible(true);
+        bt_agregarCarroCliente.setVisible(true);
 
-        jd_nuevaPersona.pack();
         jd_nuevaPersona.setModal(true);
         jd_nuevaPersona.setLocationRelativeTo(this);
         jd_nuevaPersona.setVisible(true);
@@ -279,21 +671,36 @@ public class Carwash extends javax.swing.JFrame {
         try {
             DefaultListModel model = (DefaultListModel) list_carros.getModel();
             if (!model.isEmpty()) {
-                
+
                 nombre = tf_nombre.getText().trim();
                 apellido = tf_apellido.getText().trim();
                 edad = Integer.parseInt(sp_edad.getValue().toString());
-                
-                Cliente c = new Cliente();
-                c.setNombre(nombre);
-                c.setApellido(apellido);
-                c.setEdad(edad);
-                
-                for (int i = 0; i < model.getSize(); i++) {
-                    c.setCarro((Carro)model.getElementAt(i));
+
+                if (!nombre.equals("") && !apellido.equals("")) {
+                    Cliente c = new Cliente();
+                    c.setNombre(nombre);
+                    c.setApellido(apellido);
+                    c.setEdad(edad);
+
+                    for (int i = 0; i < model.getSize(); i++) {
+                        Carro carro = (Carro) model.getElementAt(i);
+                        c.setCarro(carro);
+                        carrosPorLavar.addElement(carro);
+                    }
+
+                    ac.getClientes().add(c);
+                    ac.escribirClientes();
+
+                    jd_nuevaPersona.setVisible(false);
+                    tf_nombre.setText("");
+                    tf_apellido.setText("");
+                    sp_edad.setValue(20);
+                    model.removeAllElements();
+
+                    JOptionPane.showMessageDialog(jd_nuevaPersona, "Cliente registrado.", "Registro exitoso.", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(jd_nuevaPersona, "Debe llenar todos los campos.", "Campos faltantes", JOptionPane.ERROR_MESSAGE);
                 }
-                
-                JOptionPane.showMessageDialog(jd_nuevaPersona, "CLiente registrado.", "Registro exitoso.", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(jd_nuevaPersona, "Debe agreagar al menos un carro.", "Sin carros", JOptionPane.ERROR_MESSAGE);
             }
@@ -301,6 +708,208 @@ public class Carwash extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_bt_registrarClienteActionPerformed
+
+    private void bt_nuevoCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_nuevoCarroActionPerformed
+        int numeroPlaca, cantidadPuertas, nivelSuciedad;
+        String tamaño;
+
+        try {
+            numeroPlaca = Integer.parseInt(ff_numPlaca.getText());
+            cantidadPuertas = Integer.parseInt(sp_puertas.getValue().toString());
+            nivelSuciedad = sl_suciedad.getValue();
+            tamaño = cb_tamano.getSelectedItem().toString();
+            /*
+            boolean flag = true;
+            for (int i = 0; i < carrosPorLavar.getSize(); i++) {
+                if ((numeroPlaca+"").equals((carrosPorLavar.getElementAt(i)).toString())) {
+                    flag = false;
+                    break;
+                }
+            }
+            OUTER:
+            if (flag) {
+                for (int i = 0; i < carrosLavados.getSize(); i++) {
+                    if ((numeroPlaca+"").equals(( carrosLavados.getElementAt(i)).toString())) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    for (int i = 0; i < carrosAsignados.getSize(); i++) {
+                        if ((numeroPlaca+"").equals(( carrosAsignados.getElementAt(i)).toString())) {
+                            flag = false;
+                            break OUTER;
+                        }
+                    }
+                }
+            }
+             */
+            //if (flag) {
+            Carro carro = new Carro(numeroPlaca, tamaño, cantidadPuertas, nivelSuciedad);
+
+            DefaultListModel model = (DefaultListModel) list_carros.getModel();
+            model.addElement(carro);
+            list_carros.setModel(model);
+            JOptionPane.showMessageDialog(jd_carroCliente, "Carro creado exitosamente.");
+//            } else {
+//
+//            }
+
+            jd_carroCliente.setVisible(false);
+            ff_numPlaca.setText("");
+            sp_puertas.setValue(2);
+            sl_suciedad.setValue(5);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_bt_nuevoCarroActionPerformed
+
+    private void bt_agregarCarroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarCarroClienteActionPerformed
+        jd_carroCliente.pack();
+        jd_carroCliente.setModal(true);
+        jd_carroCliente.setLocationRelativeTo(jd_nuevaPersona);
+        jd_carroCliente.setVisible(true);
+    }//GEN-LAST:event_bt_agregarCarroClienteActionPerformed
+
+    private void bt_registrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registrarEmpleadoActionPerformed
+        String nombre, apellido;
+        int edad;
+        try {
+            DefaultListModel model = (DefaultListModel) list_carros.getModel();
+            if (!model.isEmpty()) {
+
+                nombre = tf_nombre.getText().trim();
+                apellido = tf_apellido.getText().trim();
+                edad = Integer.parseInt(sp_edad.getValue().toString());
+
+                if (!nombre.equals("") && !apellido.equals("")) {
+                    Empleado e = new Empleado();
+                    e.setNombre(nombre);
+                    e.setApellido(apellido);
+                    e.setEdad(edad);
+
+                    for (int i = 0; i < model.getSize(); i++) {
+                        Carro carro = (Carro) model.getElementAt(i);
+                        e.setCarroPorLimpiar(carro);
+                    }
+
+                    ae.getEmpleados().add(e);
+                    ae.escribirEmpleados();
+                    DefaultComboBoxModel m = (DefaultComboBoxModel) cb_empleadosAsignar.getModel();
+                    m.addElement(e);
+                    cb_empleadosAsignar.setModel(m);
+                    empleados1.addElement(e);
+                    empleados2.addElement(e);
+                    empleados3.addElement(e);
+
+                    jd_nuevaPersona.setVisible(false);
+                    tf_nombre.setText("");
+                    tf_apellido.setText("");
+                    sp_edad.setValue(20);
+                    model.removeAllElements();
+
+                    JOptionPane.showMessageDialog(jd_nuevaPersona, "Empleado registrado.", "Registro exitoso.", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(jd_nuevaPersona, "Debe llenar todos los campos.", "Campos faltantes", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(jd_nuevaPersona, "Debe agreagar al menos un carro a limpiar.", "Sin carros", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_bt_registrarEmpleadoActionPerformed
+
+    private void bt_asignarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_asignarCarroActionPerformed
+        if (cb_carrosPorLavar.getSelectedIndex() >= 0) {
+
+            DefaultListModel model = (DefaultListModel) list_carros.getModel();
+            Carro c = (Carro) carrosPorLavar.getElementAt(cb_carrosPorLavar.getSelectedIndex());
+
+            if (cb_empleadosAsignar.getSelectedIndex() == -1) {
+
+                if (model.size() < 6) {
+                    model.addElement(c);
+                    carrosAsignados.addElement(c);
+                    carrosPorLavar.removeElement(c);
+
+                    list_carros.setModel(model);
+                }
+            } else {
+                Empleado e = (Empleado) cb_empleadosAsignar.getSelectedItem();
+                e.setCarroPorLimpiar(c);
+            }
+            cb_empleadosAsignar.setSelectedIndex(-1);
+            cb_empleadosAsignar.setEnabled(false);
+        }
+    }//GEN-LAST:event_bt_asignarCarroActionPerformed
+
+    private void bt_agregarCarroEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarCarroEmpleadoActionPerformed
+        jd_todos.pack();
+        jd_todos.setModal(true);
+        jd_todos.setLocationRelativeTo(jd_nuevaPersona);
+        jd_todos.setVisible(true);
+    }//GEN-LAST:event_bt_agregarCarroEmpleadoActionPerformed
+
+    private void jmi_asignarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_asignarCarroActionPerformed
+        jd_todos.pack();
+        jd_todos.setModal(true);
+        jd_todos.setLocationRelativeTo(jd_nuevaPersona);
+        jd_todos.setVisible(true);
+        
+        cb_empleadosAsignar.setModel(new DefaultComboBoxModel(ae.getEmpleados().toArray()));
+        cb_empleadosAsignar.setEnabled(true);
+    }//GEN-LAST:event_jmi_asignarCarroActionPerformed
+
+    private void cb_estacion1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_estacion1ItemStateChanged
+        if (cb_estacion1.getSelectedIndex()!=-1) {
+            if (cb_estacion1.getSelectedIndex()==cb_estacion2.getSelectedIndex() || cb_estacion1.getSelectedIndex()==cb_estacion3.getSelectedIndex()) {
+                cb_estacion1.setSelectedIndex(-1);
+            }
+        }
+    }//GEN-LAST:event_cb_estacion1ItemStateChanged
+
+    private void cb_estacion2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_estacion2ItemStateChanged
+        if (cb_estacion2.getSelectedIndex()!=-1) {
+            if (cb_estacion2.getSelectedIndex()==cb_estacion1.getSelectedIndex() || cb_estacion2.getSelectedIndex()==cb_estacion3.getSelectedIndex()) {
+                cb_estacion2.setSelectedIndex(-1);
+            }
+        }
+    }//GEN-LAST:event_cb_estacion2ItemStateChanged
+
+    private void cb_estacion3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_estacion3ItemStateChanged
+        if (cb_estacion3.getSelectedIndex()!=-1) {
+            if (cb_estacion3.getSelectedIndex()==cb_estacion1.getSelectedIndex() || cb_estacion2.getSelectedIndex()==cb_estacion3.getSelectedIndex()) {
+                cb_estacion3.setSelectedIndex(-1);
+            }
+        }
+    }//GEN-LAST:event_cb_estacion3ItemStateChanged
+
+    private void bt_lavarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_lavarActionPerformed
+        AdminLavado lavado1;
+        AdminLavado lavado2;
+        AdminLavado lavado3;
+        
+        Empleado e = (Empleado)empleados1.getElementAt(cb_estacion1.getSelectedIndex());
+        if (e!=null) {
+            lavado1 = new AdminLavado(tb_1, pb1, e);
+            lavado1.start();
+        }
+        e = (Empleado)empleados2.getElementAt(cb_estacion2.getSelectedIndex());
+        if (e!=null) {
+            lavado2 = new AdminLavado(tb_2, pb2, e);
+            lavado2.start();
+        }
+        e = (Empleado)empleados3.getElementAt(cb_estacion3.getSelectedIndex());
+        if (e!=null) {
+            lavado3 = new AdminLavado(tb_3, pb3, e);
+            lavado3.start();
+        }
+        
+    }//GEN-LAST:event_bt_lavarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,27 +947,72 @@ public class Carwash extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt_agregarCarro;
-    private javax.swing.JButton bt_agregarCarro1;
+    private javax.swing.JButton bt_agregarCarroCliente;
+    private javax.swing.JButton bt_agregarCarroEmpleado;
+    private javax.swing.JButton bt_asignarCarro;
+    private javax.swing.JButton bt_lavar;
+    private javax.swing.JButton bt_nuevoCarro;
     private javax.swing.JButton bt_registrarCliente;
     private javax.swing.JButton bt_registrarEmpleado;
+    private javax.swing.JComboBox<String> cb_carrosAsignados;
+    private javax.swing.JComboBox<String> cb_carrosLavados;
+    private javax.swing.JComboBox<String> cb_carrosPorLavar;
+    private javax.swing.JComboBox<String> cb_empleadosAsignar;
+    private javax.swing.JComboBox<String> cb_estacion1;
+    private javax.swing.JComboBox<String> cb_estacion2;
+    private javax.swing.JComboBox<String> cb_estacion3;
+    private javax.swing.JComboBox<String> cb_tamano;
+    private javax.swing.JFormattedTextField ff_numPlaca;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JDialog jd_carroCliente;
     private javax.swing.JDialog jd_nuevaPersona;
+    private javax.swing.JDialog jd_todos;
     private javax.swing.JMenu jm_registro;
+    private javax.swing.JMenuItem jmi_asignarCarro;
     private javax.swing.JMenuItem jmi_registrarCliente;
     private javax.swing.JMenuItem jmi_registrarEmpleado;
     private javax.swing.JList<String> list_carros;
+    private javax.swing.JProgressBar pb1;
+    private javax.swing.JProgressBar pb2;
+    private javax.swing.JProgressBar pb3;
+    private javax.swing.JSlider sl_suciedad;
     private javax.swing.JSpinner sp_edad;
+    private javax.swing.JSpinner sp_puertas;
+    private javax.swing.JTable tb_1;
+    private javax.swing.JTable tb_2;
+    private javax.swing.JTable tb_3;
     private javax.swing.JTextField tf_apellido;
     private javax.swing.JTextField tf_nombre;
     // End of variables declaration//GEN-END:variables
+
+    AdminClientes ac = new AdminClientes();
+    AdminEmpleados ae = new AdminEmpleados();
+    DefaultComboBoxModel carrosPorLavar = new DefaultComboBoxModel();
+    DefaultComboBoxModel carrosLavados = new DefaultComboBoxModel();
+    DefaultComboBoxModel carrosAsignados = new DefaultComboBoxModel();
+    DefaultComboBoxModel empleados1;
+    DefaultComboBoxModel empleados2;
+    DefaultComboBoxModel empleados3;
+
 }

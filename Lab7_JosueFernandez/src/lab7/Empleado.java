@@ -48,4 +48,12 @@ public class Empleado extends Persona {
         return super.toString();
     }
 
+    public ArrayList<Carro> getCarrosPorLimpiar() {
+        return carrosPorLimpiar;
+    }
+
+    public void setCarrosPorLimpiar(ArrayList<Carro> carrosPorLimpiar) {
+        this.carrosPorLimpiar = carrosPorLimpiar;
+    }
+
 }

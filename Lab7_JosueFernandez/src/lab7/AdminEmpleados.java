@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 public class AdminEmpleados {
     
     private File archivo;
-    private ArrayList<Empleado> empleados;
+    private ArrayList<Empleado> empleados = new ArrayList<>();
 
     public AdminEmpleados() {
-        archivo = new File("./Empleados");
+        archivo = new File("./Empleados.emp");
     }
 
     public File getArchivo() {
@@ -30,6 +30,7 @@ public class AdminEmpleados {
     }
 
     public ArrayList<Empleado> getEmpleados() {
+        System.out.println("Agregar");
         return empleados;
     }
 
@@ -37,7 +38,7 @@ public class AdminEmpleados {
         this.empleados = empleados;
     }
     
-    public void escribirClientes() {
+    public void escribirEmpleados() {
 
         try {
             FileOutputStream fo = new FileOutputStream(archivo);
@@ -58,7 +59,7 @@ public class AdminEmpleados {
         }
     }
     
-    public void cargarCLientes(){
+    public void cargarEmpleados(){
         
         if (archivo.exists()) {
             

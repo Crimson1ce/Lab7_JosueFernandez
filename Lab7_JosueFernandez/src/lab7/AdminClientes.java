@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 public class AdminClientes {
 
     private File archivo;
-    private ArrayList<Cliente> clientes;
+    private ArrayList<Cliente> clientes = new ArrayList<>();
 
     public AdminClientes() {
-        archivo = new File("./Clientes");
+        archivo = new File("./Clientes.cli");
     }
 
     public File getArchivo() {
@@ -30,6 +30,7 @@ public class AdminClientes {
     }
 
     public ArrayList<Cliente> getClientes() {
+        System.out.println("CLientres");
         return clientes;
     }
 
@@ -59,7 +60,7 @@ public class AdminClientes {
 
     }
     
-    public void cargarCLientes(){
+    public void cargarClientes(){
         
         if (archivo.exists()) {
             
