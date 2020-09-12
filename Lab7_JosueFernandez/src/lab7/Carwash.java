@@ -1021,7 +1021,11 @@ public class Carwash extends javax.swing.JFrame {
             } else {
                 Empleado e = (Empleado) cb_empleadosAsignar.getSelectedItem();
                 e.setCarroPorLimpiar(c);
-                carrosAsignados.addElement(c);
+                try {
+                    carrosAsignados.addElement(c);
+                } catch (Exception ex) {
+                }
+                
                 carrosPorLavar.removeElement(c);
             }
 
