@@ -48,4 +48,12 @@ public class Cliente extends Persona {
         return super.toString();
     }
 
+    public ArrayList<Carro> getCarros() {
+        return carros;
+    }
+
+    public void setCarros(ArrayList<Carro> carros) {
+        this.carros = carros;
+    }
+
 }

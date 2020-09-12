@@ -30,7 +30,6 @@ public class AdminEmpleados {
     }
 
     public ArrayList<Empleado> getEmpleados() {
-        System.out.println("Agregar");
         return empleados;
     }
 

@@ -45,7 +45,7 @@ public abstract class Persona implements Serializable{
 
     @Override
     public String toString() {
-        return nombre + apellido;
+        return nombre + " " + apellido;
     }
     
 }

@@ -30,7 +30,6 @@ public class AdminClientes {
     }
 
     public ArrayList<Cliente> getClientes() {
-        System.out.println("CLientres");
         return clientes;
     }
 
